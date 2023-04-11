@@ -1,8 +1,8 @@
 import { Box, Button, List, TextField, styled } from "@mui/material";
 import { useState } from "react";
 import Item from "./Item";
-import { useSelector } from "react-redux";
-import { selectTasks } from "../../store/todoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addTask, selectTasks } from "../../store/todoSlice";
 
 const TaskInput = styled(TextField)`
   margin-right: 16px;
@@ -10,6 +10,7 @@ const TaskInput = styled(TextField)`
 
 export default function ToDoList() {
   const tasks = useSelector(selectTasks);
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +19,7 @@ export default function ToDoList() {
 
   const handleAddTask = () => {
     if (inputValue.trim() !== "") {
+      dispatch(addTask(inputValue.trim()));
       setInputValue("");
     }
   };
