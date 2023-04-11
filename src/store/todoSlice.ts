@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { Task } from '../interfaces';
 
@@ -14,20 +14,13 @@ export const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    addTask: (state, action: PayloadAction<string>) => {
-      state.tasks.push({ id: Date.now(), text: action.payload, completed: false });
+    addTask: () => {
     },
-    removeTask: (state, action: PayloadAction<number>) => {
-      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+    removeTask: () => {
     },
-    toggleCompletion: (state, action: PayloadAction<number>) => {
-      const task = state.tasks.find((task) => task.id === action.payload);
-      if (task) {
-        task.completed = !task.completed;
-      }
+    toggleCompletion: () => {
     },
-    removeCompletedTasks: (state) => {
-      state.tasks = state.tasks.filter((task) => !task.completed);
+    removeCompletedTasks: () => {
     },
   },
 });
